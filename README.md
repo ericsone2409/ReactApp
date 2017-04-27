@@ -1,13 +1,9 @@
-# A Complete Intro to React
+# Little App with React-webpack-sass
 
-Welcome to a complete intro to React! The site actual workshop material for this repo can be found [here][gh-page]. On the master branch you will find the completed project. On the start branch you will find the barebones boilerplater of the project designed to help you get started.
+This is a simple project with React.
 
 ## Contributing
 
-Please contribute, file issues, and make PRs. More than anything I'm sure there are typos abounding.
+This is a project that I am creating and developing following the workshop of Brian Holt
 
-## License
 
-MIT
-
-[gh-page]: http://btholt.github.io/complete-intro-to-react/
