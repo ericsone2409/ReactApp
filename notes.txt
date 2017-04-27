@@ -1,0 +1,25 @@
+HERRAMIENTAS:
+- Standard: es una linterna para tus archivos js que no te deja usar semicolons. 
+install: npm install --global standard
+usage: standard
+
+- NPM script: es para correr 'build process' a traves de atajos mediante 'npm run (nombre del shorcut)'
+estos shorcuts los defines adentro del archivo package.json, con un objeto llamado:
+"scripts": {
+	"lint": "standard",
+}
+asi que se ejecuta corriendo 'npm run lint'
+
+- Webpack: es algo parecido al grunt
+install: npm --global webpack
+usage: webpack (nombre dle primer archivo que es el central de tu app) (nombre del archivo de salida que es el que linkeas a tu html)
+
+- Babel: eso se utiliza para transformar todo es6 a es5. Ademas nos permite usar JSX, es decir, babel es en general un transformador.
+se tiene que crear un archivo de configuracion en el root del proyecto y se tiene que llamar ".abelrc"
+para este caso le diremos a babel a travez de ese archivo que ignore las transformaciones de import y export por que queremos que de eso especificamente se encargue webpack, entonces nuestro archivo de confiruracion quedaria asi:
+{
+	"presets":[
+		"react",
+		["es2015", {"modules": false, "loose": true}]
+	]
+}
