@@ -11,7 +11,7 @@ estos shorcuts los defines adentro del archivo package.json, con un objeto llama
 asi que se ejecuta corriendo 'npm run lint'
 
 - Webpack: es algo parecido al grunt
-install: npm --global webpack
+install: npm install --global webpack
 usage: webpack (nombre dle primer archivo que es el central de tu app) (nombre del archivo de salida que es el que linkeas a tu html)
 
 - Babel: eso se utiliza para transformar todo es6 a es5. Ademas nos permite usar JSX, es decir, babel es en general un transformador.
