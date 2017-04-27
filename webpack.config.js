@@ -1,13 +1,13 @@
 const path = require('path')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractCss = new ExtractTextPlugin({
-    filename: "../css/styles1.css",
-    disable: true
+  filename: '../css/styles1.css',
+  disable: true
 })
 
 const extractSass = new ExtractTextPlugin({
-    filename: "../css/styles2.css",
-    disable: true
+  filename: '../css/styles2.css',
+  disable: true
 })
 
 module.exports = {
@@ -19,7 +19,8 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
-    publicPath: '/common/'
+    publicPath: '/common/',
+    historyApiFallback: true
   },
   resolve: {
     extensions: ['.js', '.json']
@@ -31,11 +32,15 @@ module.exports = {
   },
   module: {
     rules: [
-      {
+      /*{
         enforce: 'pre',
         test: /\.js$/,
         loader: 'eslint-loader',
         exclude: /node_modules/
+      },*/
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       },
       {
         include: path.resolve(__dirname, 'common/js'),
@@ -45,20 +50,20 @@ module.exports = {
       {
         test: /\.css$/,
         use: extractCss.extract({
-          fallback: "style-loader",
-          use: "css-loader"
+          fallback: 'style-loader',
+          use: 'css-loader'
         })
       },
       {
         test: /\.scss$/,
         loader: extractSass.extract({
-            use: [{
-                loader: "css-loader"
-            }, {
-                loader: "sass-loader"
-            }],
-            // use style-loader in development 
-            fallback: "style-loader"
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }],
+            // use style-loader in development
+          fallback: 'style-loader'
         })
       }
     ]
