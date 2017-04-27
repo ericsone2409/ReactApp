@@ -23,3 +23,23 @@ para este caso le diremos a babel a travez de ese archivo que ignore las transfo
 		["es2015", {"modules": false, "loose": true}]
 	]
 }
+
+
+//INSTRUCCIONES PARA CORRERLO LA PRIMERA VEZ
+- npm install -g yarn
+
+- cierran y abren la consola, luego van al root el proyecto y ejecutan yarn
+
+- Despues hacer las instalaciones globales: 
+	- npm install -g webpack
+	- npm install -g webpack-dev-server
+	- npm install -g standard
+	- npm install -g eslint
+
+- cierran y abren la consola de nuevo y van al root del proyecto 
+
+- npm run build
+
+- npm run dev
+
+- luego van a 'localhost:8080/' y ya deberian de ver todo bien
