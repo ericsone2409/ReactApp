@@ -1,13 +1,14 @@
 const path = require('path')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const prod = true
 const extractCss = new ExtractTextPlugin({
-    filename: "../css/styles1.css",
-    disable: true
+  filename: '../css/styles1.css',
+  disable: prod
 })
 
 const extractSass = new ExtractTextPlugin({
-    filename: "../css/styles2.css",
-    disable: true
+  filename: '../css/styles2.css',
+  disable: prod
 })
 
 module.exports = {
@@ -45,20 +46,20 @@ module.exports = {
       {
         test: /\.css$/,
         use: extractCss.extract({
-          fallback: "style-loader",
-          use: "css-loader"
+          fallback: 'style-loader',
+          use: 'css-loader'
         })
       },
       {
         test: /\.scss$/,
         loader: extractSass.extract({
-            use: [{
-                loader: "css-loader"
-            }, {
-                loader: "sass-loader"
-            }],
-            // use style-loader in development 
-            fallback: "style-loader"
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }],
+            // use style-loader in development
+          fallback: 'style-loader'
         })
       }
     ]
