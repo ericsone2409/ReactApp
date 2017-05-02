@@ -1,13 +1,14 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const dev = true
 const extractCss = new ExtractTextPlugin({
   filename: '../css/styles1.css',
-  disable: true
+  disable: dev
 })
 
 const extractSass = new ExtractTextPlugin({
   filename: '../css/styles2.css',
-  disable: true
+  disable: dev
 })
 
 module.exports = {
