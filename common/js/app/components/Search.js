@@ -1,13 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import actionCreators from './actionCreators'
+import { setSearchTerm } from './actionCreators'
 
 // Components
 import ShowCard from './ShowCard.js'
 import Header from './Header.js'
-
-const setSearchTerm = actionCreators.setSearchTerm
 
 const { arrayOf, shape, string } = React.PropTypes 
 

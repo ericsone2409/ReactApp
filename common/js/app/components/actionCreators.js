@@ -1,9 +1,5 @@
-import actions from './actions'
+import { SET_SEARCH_TERM } from './actions'
 
-const actionCreators = {
-	setSearchTerm(searchTerm) {
-		return { type: actions.SET_SEARCH_TERM, searchTerm: searchTerm }
-	}
+export const setSearchTerm = (searchTerm) => {
+	return { type: SET_SEARCH_TERM, searchTerm: searchTerm }
 }
-
-export default actionCreators

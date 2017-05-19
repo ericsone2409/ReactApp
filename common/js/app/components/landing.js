@@ -2,9 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 
-import actionCreators from './actionCreators'
-
-const setSearchTerm = actionCreators.setSearchTerm
+import { setSearchTerm } from './actionCreators'
 
 const { string, func, object } = React.PropTypes
 const Landing = React.createClass({
