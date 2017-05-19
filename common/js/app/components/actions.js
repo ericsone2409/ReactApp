@@ -1,1 +1,5 @@
-export const SET_SEARCH_TERM = 'SET_SEARCH_TERM'
+const actions = {
+	SET_SEARCH_TERM: 'SET_SEARCH_TERM'
+}
+
+export default actions

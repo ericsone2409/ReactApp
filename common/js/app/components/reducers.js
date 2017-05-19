@@ -1,9 +1,11 @@
-import { SET_SEARCH_TERM } from './actions'
+import actions from './actions'
 
 const DEFAULT_STATE = {
 	searchTerm: ''
 }
 
+
+//tipico reducer
 const setSearchTerm = (state, action) => {
 	const newState = {}
 	Object.assign(newState, state, {searchTerm: action.searchTerm})
@@ -13,7 +15,7 @@ const setSearchTerm = (state, action) => {
 const rootReducer = (state = DEFAULT_STATE, action) => {
 
 	switch (action.type) {
-		case SET_SEARCH_TERM:
+		case actions.SET_SEARCH_TERM:
 			return setSearchTerm(state, action)
 		default:
 			return state
