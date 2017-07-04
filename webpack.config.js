@@ -1,76 +1,52 @@
-const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const dev = true
-const extractCss = new ExtractTextPlugin({
-  filename: '../css/styles1.css',
-  disable: dev
-})
+const path = require('path');
+const webpack = require('webpack');
 
-const extractSass = new ExtractTextPlugin({
-  filename: '../css/styles2.css',
-  disable: dev
-})
-
-module.exports = {
+const config = {
   context: __dirname,
-  entry: './common/js/app/app.js',
-  devtool: 'eval',
+  entry: ['./js/ClientApp.jsx'],
+  devtool: process.env.NODE_ENV === 'development' ? 'cheap-eval-source-map' : false,
   output: {
-    path: path.join(__dirname, '/common/js/'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'public'),
+    filename: 'bundle.js',
+    publicPath: '/public/'
   },
   devServer: {
-    publicPath: '/common/',
+    hot: true,
+    publicPath: '/public/',
     historyApiFallback: true
   },
   resolve: {
-    extensions: ['.js', '.json']
+    extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      react: 'preact-compat',
+      'react-dom': 'preact-compat'
+    }
   },
   stats: {
     colors: true,
     reasons: true,
     chunks: false
   },
+  plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()],
   module: {
     rules: [
-      /*{
+      {
         enforce: 'pre',
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'eslint-loader',
         exclude: /node_modules/
-      },*/
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
       },
       {
-        include: path.resolve(__dirname, 'common/js'),
-        test: /\.js$/,
-        loader: 'babel-loader'
-      },
-      {
-        test: /\.css$/,
-        use: extractCss.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
-        })
-      },
-      {
-        test: /\.scss$/,
-        loader: extractSass.extract({
-          use: [{
-            loader: 'css-loader'
-          }, {
-            loader: 'sass-loader'
-          }],
-            // use style-loader in development
-          fallback: 'style-loader'
-        })
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        include: [path.resolve('js'), path.resolve('node_modules/preact-compat/src')]
       }
     ]
-  },
-  plugins: [
-    extractCss,
-    extractSass
-  ]
+  }
+};
+
+if (process.env.NODE_ENV === 'development') {
+  config.entry.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000');
 }
+
+module.exports = config;
