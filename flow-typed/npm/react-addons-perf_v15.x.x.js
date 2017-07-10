@@ -1,4 +1,4 @@
-// flow-typed signature: cb4b10c51560898b135037945ebf6748
+// flow-typed signature: 2a1761105599b11fa527c198852e859c
 // flow-typed version: 187dc46bbb/react-addons-perf_v15.x.x/flow_>=v0.23.x
 
 declare module 'react-addons-perf' {

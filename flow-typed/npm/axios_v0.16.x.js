@@ -1,4 +1,4 @@
-// flow-typed signature: b371e1002f7439f9f053dc08186c5375
+// flow-typed signature: 40aa181b24cf4eb0ccc61d66864d2e0c
 // flow-typed version: dbaff82b4f/axios_v0.16.x/flow_>=v0.28.x
 
 declare module 'axios' {
