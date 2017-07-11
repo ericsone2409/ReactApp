@@ -6,15 +6,18 @@ export type Show = {
   year: string,
   imdbID: string,
   trailer: string,
-  poster: string
+  poster: string,
+  rating?: string
 };
 
 declare var module: {
   hot: { accept(path: string, callback: () => void): void }
 };
 
-declare type setSearchAction = "SET_SEARCH_TERM";
-declare type clearSearchAction = "CLEAR_SEARCH_TERM";
+declare type ActionType =
+  | "SET_SEARCH_TERM"
+  | "CLEAR_SEARCH_TERM"
+  | "ADD_API_DATA";
 
 declare type ActionT<A: ActionType, P> = {|
   type: A,
@@ -23,4 +26,5 @@ declare type ActionT<A: ActionType, P> = {|
 
 export type Action =
   | ActionT<"SET_SEARCH_TERM", string>
-  | ActionT<"CLEAR_SEARCH_TERM", string>;
+  | ActionT<"CLEAR_SEARCH_TERM", string>
+  | ActionT<"ADD_API_DATA", Show>;
