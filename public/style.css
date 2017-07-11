@@ -485,6 +485,7 @@ html {
   display: inline-block;
   text-decoration: none;
   border-radius: 4px;
+	cursor: pointer;
 }
 
 .landing > a:hover, .landing > a:focus {
