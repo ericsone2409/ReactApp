@@ -4,8 +4,11 @@ const webpack = require("webpack");
 module.exports = {
   context: __dirname,
   entry: [
-    //"webpack-hot-middleware/client?path=__webpack_hmr&timeout=2000",
+    "react-hot-loader/patch",
+    "webpack-dev-server/client?http://localhost:8080",
+    "webpack/hot/only-dev-server",
     "./js/ClientApp.jsx"
+    //"webpack-hot-middleware/client?path=__webpack_hmr&timeout=2000", --> this line is to make HMR with server side rendering. you have to coment other lines.
   ],
   devtool: "cheap-eval-source-map",
   output: {
@@ -14,7 +17,7 @@ module.exports = {
     publicPath: "/public/"
   },
   devServer: {
-    hot: false,
+    hot: true,
     publicPath: "/public/",
     historyApiFallback: true
   },
@@ -26,6 +29,10 @@ module.exports = {
     reasons: true,
     chunks: true
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
+  ],
   module: {
     rules: [
       {
@@ -39,9 +46,5 @@ module.exports = {
         loader: "babel-loader"
       }
     ]
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
-  ]
+  }
 };
