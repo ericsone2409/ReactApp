@@ -6,7 +6,10 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "dev": "webpack-dev-server",
-    "flow": "flow"
+    "flow": "flow",
+    "start": "set NODE_ENV=server",
+    "server": "node server.js",
+    "start-server": "npm run start && npm run server"
   },
   "dependencies": {
     "axios": "0.16.1",
