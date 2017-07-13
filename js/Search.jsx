@@ -1,16 +1,20 @@
 // @flow
 
 import React from "react";
-import { connect } from "react-redux";
 import ShowCard from "./ShowCard";
 import Header from "./Header";
 
 const Search = (props: {
   shows: Array<Show>,
-  searchTerm: string // eslint-disable-line react/no-unused-prop-types
+  searchTerm: string, // eslint-disable-line react/no-unused-prop-types
+  handlerSearchTermChange: Function
 }) => (
   <div className="search">
-    <Header showSearch />
+    <Header
+      showSearch
+      searchTerm={props.searchTerm}
+      handlerSearchTermChange={props.handlerSearchTermChange}
+    />
     <div>
       {props.shows
         .filter(show =>
@@ -23,6 +27,4 @@ const Search = (props: {
   </div>
 );
 
-const mapStateToProps = state => ({ searchTerm: state.searchTerm });
-
-export default connect(mapStateToProps)(Search);
+export default Search;

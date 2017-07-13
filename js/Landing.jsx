@@ -1,24 +1,22 @@
 // @flow
 
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import type { RouterHistory } from "react-router-dom";
-import { setSearchTerm, clearSearchTerm } from "./actionCreators";
 
 class Landing extends Component {
   props: {
     searchTerm: string,
     handlerSearchTermChange: Function,
     history: RouterHistory,
-    goAndClear: Function
+    clearSearchTerm: Function
   };
-  goToSearch = event => {
+  goToSearch = (
+    event: SyntheticKeyboardEvent & { target: HTMLFormElement }
+  ) => {
     event.preventDefault();
     this.props.history.push("/search");
   };
-  clearSearchTerm = event => {
-    event.preventDefault();
-    this.props.goAndClear();
+  clearSearchTerm = () => {
+    this.props.clearSearchTerm();
     this.props.history.push("/search");
   };
   render() {
@@ -41,15 +39,4 @@ class Landing extends Component {
     );
   }
 }
-
-const mapStateToProps = state => ({ searchTerm: state.searchTerm });
-const mapDispatchToProps = (dispatch: Function) => ({
-  handlerSearchTermChange(event) {
-    dispatch(setSearchTerm(event.target.value));
-  },
-  goAndClear() {
-    dispatch(clearSearchTerm());
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Landing);
+export default Landing;

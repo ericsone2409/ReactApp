@@ -1,27 +1,31 @@
 // @flow
 
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import Axios from "axios";
 import Header from "./Header";
 import Spinner from "./Spinner";
-import { getAPIDetails } from "./actionCreators";
 
 class Details extends Component {
+  state = {
+    apiData: {}
+  };
   componentDidMount() {
-    if (!this.props.rating) {
-      this.props.getAPIData();
-    }
+    Axios.get(`http://localhost:3000/${this.props.show.imdbID}`)
+      .then(response => {
+        this.setState({ apiData: response.data });
+      })
+      .catch(error => {
+        console.error("axios error", error); // eslint-disable-line no-console
+      });
   }
   props: {
-    show: Show,
-    rating: string,
-    getAPIData: Function
+    show: Show
   };
   render() {
     const { title, description, year, poster, trailer } = this.props.show;
     let ratingComponent;
-    if (this.props.rating) {
-      ratingComponent = <h3>{this.props.rating}</h3>;
+    if (this.state.apiData.rating) {
+      ratingComponent = <h3>{this.state.apiData.rating}</h3>;
     } else {
       ratingComponent = <Spinner />;
     }
@@ -37,7 +41,6 @@ class Details extends Component {
             alt={`Poster for ${title}`}
           />
           <p>{description}</p>
-
         </section>
         <div>
           <iframe
@@ -52,17 +55,4 @@ class Details extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const apiData = state.apiData[ownProps.show.imdbID]
-    ? state.apiData[ownProps.show.imdbID]
-    : {};
-  return {
-    rating: apiData.rating
-  };
-};
-const mapDispatchToProps = (dispatch: Function, ownProps) => ({
-  getAPIData() {
-    dispatch(getAPIDetails(ownProps.show.imdbID));
-  }
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Details);
+export default Details;
