@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from "react";
+import type { RouterHistory } from "react-router-dom";
 
 class Landing extends Component {
   props: {
